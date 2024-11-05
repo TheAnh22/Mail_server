@@ -18,6 +18,7 @@ case $choice in
             fi
             sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.origin
             sudo sed -i "s/^mydomain = .*/mydomain = $NEW_DOMAIN/" /etc/postfix/main.cf
+            sudo sed -i "s/^myhostname =.*/myhostname = mail.$NEW_DOMAIN/" /etc/postfix/main.cf 
             service postfix restart
             ;;
         2)
