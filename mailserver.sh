@@ -2,6 +2,8 @@
 clear
 PATHWAY=$(pwd)
 
+service postfix start
+service dovecot start
 postfixStatus=$(systemctl is-active postfix)
 dovecotStatus=$(systemctl is-active dovecot)
 if [ "$dovecotStatus" == "active" ] && [ "$postfixStatus" == "active" ]; then
