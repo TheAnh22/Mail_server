@@ -32,14 +32,14 @@ while true; do
     echo "7. Xuat toan bo user"
     echo "8. Exit"
     echo "====================="
-    read -p "Nhập lựa chọn của bạn (1-4): " choice
+    read -p "Nhập lựa chọn của bạn: " choice
 
     case $choice in
     	#Nhập tên miền mới
     	
 	 1)      
             clear
-            read -p "Nhap ten mien moi " NEW_DOMAIN
+            read -p "Nhap ten mien moi: " NEW_DOMAIN
             if [ -z "$NEW_DOMAIN" ]; then
             	echo "Ten mien khong duoc de trong!"
             	exit 1
@@ -49,11 +49,10 @@ while true; do
             	service postfix restart
             	service dovecot restart
             fi
-            
             ;;
          2)
             clear
-            read -p "Nhap ten mien mail server" NEW_HOSTNAME
+            read -p "Nhap ten mien mail server: " NEW_HOSTNAME
             if [ -z "$NEW_HOSTNAME" ]; then
             	echo "Ten hostname khong duoc de trong"
             else
@@ -136,6 +135,7 @@ while true; do
         7)
 	    clear 
             awk -F ":" '$3 >= 1000 { print $1 }' /etc/passwd
+            read -p "Press any key to countinue" 
             ;;
         8)
       	    clear
