@@ -25,12 +25,11 @@ while true; do
     echo "Chọn một tùy chọn:"
     echo "1. Sua Domain"
     echo "2. Sua Nameserver"
-    echo "3. Sua dia chi IP"
-    echo "4. Them User"
-    echo "5. Xoa User"
-    echo "6. Doi mat khau user"
-    echo "7. Xuat toan bo user"
-    echo "8. Exit"
+    echo "3. Them User"
+    echo "4. Xoa User"
+    echo "5. Doi mat khau user"
+    echo "6. Xuat toan bo user"
+    echo "7. Exit"
     echo "====================="
     read -p "Nhập lựa chọn của bạn: " choice
 
@@ -62,20 +61,8 @@ while true; do
             	service dovecot restart
             fi
             ;;
-       #Nhập dãy địa chỉ mới 
-         3)
-            clear 
-            read -p "Nhap day dia chi " NEW_IP
-            if [ -z "$NEW_IP" ]; then
-            	echo "IP khong duoc de trong!"
-            	exit 1
-            fi
-            sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.origin
-            sudo sed -i "s/^mynetworks = .*/mynetworks = $NEW_IP/" /etc/postfix/main.cf 
-            service postfix restart
-            ;;
        #Thêm user
-	 4)
+	 3)
             clear
             read -p "Nhap ten user:" USERNAME
             read -p "Nhap password:" PASSWORD
@@ -84,7 +71,7 @@ while true; do
        	    clear
             ;;
        #Xóa user 
-	 5)
+	 4)
             clear
             awk -F ":" '$3 >= 1000 { print $1 }' /etc/passwd
             read -p "Nhap ten nguoi dung(bo trong de thoat):" DELUSER
@@ -102,7 +89,7 @@ while true; do
             fi
             ;;
         #Doi password
-        6) 
+        5) 
             clear
             awk -F ":" '$3 >= 1000 { print $1 }' /etc/passwd
             read -p "Nhap ten user can doi password:" CHANGEUSER
@@ -132,12 +119,12 @@ while true; do
 	           ;;
 	      esac
             ;;
-        7)
+        6)
 	    clear 
             awk -F ":" '$3 >= 1000 { print $1 }' /etc/passwd
             read -p "Press any key to countinue" 
             ;;
-        8)
+        7)
       	    clear
 	    exit 0
 	    
