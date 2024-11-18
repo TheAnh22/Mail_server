@@ -46,7 +46,9 @@ while true; do
             	exit 1
             else
             	sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.origin
-            	sudo sed -i "s/^mydomain = .*/mydomain = $NEW_DOMAIN/" /etc/postfix/main.cf 
+            	
+            	sudo sed -i "s/^mydomain = .*/mydomain = $NEW_DOMAIN/" /etc/postfix/main.cf
+            	
             	service postfix restart
             	service dovecot restart
             fi

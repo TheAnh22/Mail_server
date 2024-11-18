@@ -23,3 +23,9 @@ sudo chown -R www-data:www-data /var/www/html/squirrelmail-webmail-1.4.22/
 sudo chown 755 -R /var/www/html/squirrelmail-webmail-1.4.22/
 sudo mv /var/www/html/squirrelmail-webmail-1.4.22/ /var/www/html/squirrelmail/
 sudo perl /var/www/html/squirrelmail/config/conf.pl
+sudo echo "mydomain = " >> /etc/postfix/main.cf
+read -p "Nhap duoi mail ma ban muon: " NEW_DOMAIN
+sudo sed -i "s/^mydomain = .*/mydomain = $NEW_DOMAIN/" /etc/postfix/main.cf
+read -p "Nhap ten may chu mail: " NEW_NAME
+sudo sed -i "s/^myhostname = .*/myhostname = $NEW_NAME/" /etc/postfix/main.cf
+sudo sed -i "s/^mydestination = .*/mydestination = $NEW_NAME, localhost.$NEW_DOMAIN, localhost, $NEW_DOMAIN/" /etc/postfix/main.cf
