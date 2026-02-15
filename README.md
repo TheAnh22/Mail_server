@@ -1,1 +1,1 @@
-This is a simple script used for create a simple mail server on Ubuntu 
+This is a script used to install a simple mail server on Ubuntu to demonstrate how a mail server operates using SquirrelMail as the mail agent.
